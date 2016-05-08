@@ -1,0 +1,71 @@
+.wrapper {
+  height: 400px;
+  width:600px;
+  background-color: grey;
+  margin: auto;
+  position: relative;
+}
+
+.road {
+
+  height:40px;
+  width:100%;
+  background-color: yellow;
+
+}
+
+
+.sidewalk {
+
+  height:20px;
+  width:100%;
+ /* background-color: white;*/
+
+}
+.car {
+
+  
+  height: 15px;
+  width: 30px;
+  background-color: green;
+  position: absolute;
+  left: 0;
+  margin-top: 40px;
+
+}
+
+.carleft {
+
+  height: 15px;
+  width: 30px;
+  background-color: blue;
+  position: absolute;
+  right: 0;
+
+}
+
+
+#frog {
+
+  height: 15px;
+  width: 15px;
+  background-color: blue;
+  position: relative;
+
+}
+
+.testcar {
+
+  height: 100px;
+  width: 100px;
+  background-color: green;
+
+
+}
+
+
+
+
+
+
+
