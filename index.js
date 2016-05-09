@@ -8,6 +8,8 @@ $(function(){
   var carLTR = $('.carMoveRight');
   var carRTL = $('.carMoveLeft');
   var frog = $('#frog');
+  var scoreOne = $('#player1');
+  var scoreTwo = $('#player2');
 
   play();
 
@@ -15,18 +17,30 @@ $(function(){
 
     setInterval(carLoop, 2500);
     setInterval(collisionCheck, 30);
+    // setInterval(winnerArea, 300);
     moveFrog();
+    recordPlayerChange();
   }
 
   var player = 1;
-  var recordPlayerChange = function (){
+  var playerScore = [0,0];
+  function recordPlayerChange (){
     if (player === 1){
-      player = -1;
+      player = 2;
     }
     else {
       player = 1;
     }
   }
+
+  // function addPlayerPoint() {
+
+  //   if () {
+
+  //   }
+
+  // }
+
 
 
   function carLoop() {
@@ -48,19 +62,19 @@ $(function(){
       switch (e.which) {
         case 37:
             frog.stop().animate({
-                left: '-=15px'
+                left: '-=35px'
             }); //left arrow key
             break;
         case 38:
+            winnerArea();
             frog.stop().animate({
-                top: '-=15px'
+                top: '-=35px'
             }); //up arrow key
             break;
         case 39:
             frog.stop().animate({
                 left: '+=15px'
             }); //right arrow key
-           
             break;
         case 40:
             frog.stop().animate({
@@ -90,9 +104,15 @@ $(function(){
 
     if (carBottom < frogTop || carTop > frogBottom || carRight < frogLeft || carLeft > frogRight) {
     }else {
-      alert("game over!");
-      // reset pieces
-
+      if (player === 1){
+        alert("game over!");
+        frog.css({"left": "275px", "top": "40px"});
+        player = 2;
+      }else{
+        alert("game over!");
+        frog.css({"left": "275px", "top": "40px"});
+        player =1;
+      }
     }
   }
 
@@ -102,6 +122,46 @@ $(function(){
     });
   }
 
+  function winnerArea() {
 
+    var winArea = $('#winarea');
+    var winTop = winArea.offset().top;
+    var winHeight = winArea.outerHeight(true);
+    var winBottom = winTop + winHeight;
+
+
+    var frogTop = frog.offset().top;
+    var frogHeight = frog.outerHeight(true);
+    var frogBottom = frogTop + frogHeight;
+
+    if (frogBottom <= winBottom){
+      updatePlayerScore();
+    }
+
+    console.log(playerScore);
+
+  }
+
+  function updatePlayerScore() {
+      if (player === 1){
+        playerScore[0]++;
+        alert("Safe frog for player one!");
+        frog.css({"left": "275px", "top": "40px"});
+        player = 2;
+        scoreOne.html(playerScore[0]);
+
+      }else{
+        playerScore[1]++;
+        alert("Safe frog for player two!");
+        frog.css({"left": "275px", "top": "40px"});
+        player = 1;
+        scoreOne.html(playerScore[1]);
+
+
+
+      }
+    } 
+  
+  
 
   });

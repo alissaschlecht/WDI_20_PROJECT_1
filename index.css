@@ -51,16 +51,27 @@
 
   width:15%;
   height: 400px;
-  background-color: blue;
   position:relative;
   float: left;
 
 }
 
-.scorebox {
+#player1, #player2{
 
-  width: 50%;
-  
+  width: 100px;
+  height:400px;
+  background-color: green;
+  position: relative;
+  float: left;
+  text-align: center;
+
+}
+
+#winarea {
+
+  width: 600px;
+  height:50px;
+  background-color: red;
 
 }
 
