@@ -8,8 +8,9 @@ $(function(){
   var carLTR = $('.carMoveRight');
   var carRTL = $('.carMoveLeft');
   var frog = $('#frog');
-  var scoreOne = $('#player1');
-  var scoreTwo = $('#player2');
+  var scoreOne = $('#score1');
+  var scoreTwo = $('#score2');
+  var showTurn = $("h2");
 
   play();
 
@@ -17,7 +18,6 @@ $(function(){
 
     setInterval(carLoop, 2500);
     setInterval(collisionCheck, 30);
-    // setInterval(winnerArea, 300);
     moveFrog();
     recordPlayerChange();
   }
@@ -42,19 +42,34 @@ $(function(){
   // }
 
 
-
   function carLoop() {
-    $("#start").click(function() {
-      collisionCheck();
-      carLTR.animate({left: "+=580px"}, 2000, function() {
-        carLTR.removeAttr('style'); 
-      });
+    $(document).keyup(function(e) {
+      if (e.keyCode == 32) {
+        collisionCheck();
+        carLTR.animate({left: "+=580px"}, 2000, function() {
+          carLTR.removeAttr('style'); 
+        });
 
-      carRTL.animate({right: "+=580px"}, 2000, function() {
-      carRTL.removeAttr('style'); });
+        carRTL.animate({right: "+=580px"}, 2000, function() {
+        carRTL.removeAttr('style'); });
 
-    });
-  }
+      };
+  });
+}
+
+
+  // function carLoop() {
+  //   $("#start").click(function() {
+  //     collisionCheck();
+  //     carLTR.animate({left: "+=580px"}, 2000, function() {
+  //       carLTR.removeAttr('style'); 
+  //     });
+
+  //     carRTL.animate({right: "+=580px"}, 2000, function() {
+  //     carRTL.removeAttr('style'); });
+
+  //   });
+  // }
 // keypress to move frog div
 
   function moveFrog () {
@@ -108,10 +123,12 @@ $(function(){
         alert("game over!");
         frog.css({"left": "275px", "top": "40px"});
         player = 2;
+        showTurn.html("Player 2: Your Turn!");
       }else{
         alert("game over!");
         frog.css({"left": "275px", "top": "40px"});
         player =1;
+        showTurn.html("Player 1: Your Turn!");
       }
     }
   }
@@ -149,16 +166,15 @@ $(function(){
         frog.css({"left": "275px", "top": "40px"});
         player = 2;
         scoreOne.html(playerScore[0]);
+        showTurn.html("Player 2: Your Turn!");
 
       }else{
         playerScore[1]++;
         alert("Safe frog for player two!");
         frog.css({"left": "275px", "top": "40px"});
         player = 1;
-        scoreOne.html(playerScore[1]);
-
-
-
+        scoreTwo.html(playerScore[1]);
+        showTurn.html("Player 1: Your Turn!")
       }
     } 
   

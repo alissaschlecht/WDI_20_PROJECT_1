@@ -1,3 +1,8 @@
+/** {
+
+    border: red 1px solid;
+}*/
+
 .wrapper {
   height: 400px;
   width:600px;
@@ -53,6 +58,7 @@
   height: 400px;
   position:relative;
   float: left;
+  margin-left: 50px;
 
 }
 
@@ -60,10 +66,11 @@
 
   width: 100px;
   height:400px;
-  background-color: green;
+  background-color: black;
   position: relative;
   float: left;
   text-align: center;
+  color: white;
 
 }
 
@@ -73,6 +80,11 @@
   height:50px;
   background-color: red;
 
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 
