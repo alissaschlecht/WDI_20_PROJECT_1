@@ -4,145 +4,103 @@
 
 $(function(){
 
-  var car = $('.car');
-  var carleft = $('.carleft');
+  var car =  $('.allCars');
+  var carLTR = $('.carMoveRight');
+  var carRTL = $('.carMoveLeft');
   var frog = $('#frog');
+
+  play();
 
   function play(){
 
-    //carLoop();
-    //moveFrog();
-    //collision();
+    setInterval(carLoop, 2500);
+    setInterval(collisionCheck, 30);
+    moveFrog();
   }
 
-  // function createCar(){
+  var player = 1;
+  var recordPlayerChange = function (){
+    if (player === 1){
+      player = -1;
+    }
+    else {
+      player = 1;
+    }
+  }
 
-  //   $("#tester").append('<div id="testcar"></div>');
-
-  // }
-
-  // createCar();
 
   function carLoop() {
-  $("#start").click(function() {
+    $("#start").click(function() {
+      collisionCheck();
+      carLTR.animate({left: "+=580px"}, 2000, function() {
+        carLTR.removeAttr('style'); 
+      });
 
-    car.animate({left: "+=580px"}, 1300, function() {
-    car.removeAttr('style'); });
+      carRTL.animate({right: "+=580px"}, 2000, function() {
+      carRTL.removeAttr('style'); });
 
-  });
-
+    });
   }
-
-  function carLoop2() {
-  $("#start").click(function() {
-
-    carleft.animate({right: "+=580px"}, 1300, function() {
-    carleft.removeAttr('style'); });
-
-  });
-
-  }
-
-  setInterval(carLoop, 500);
-  setInterval(carLoop2, 500);
-
 // keypress to move frog div
 
   function moveFrog () {
     $(document).keydown(function(e) {
-        switch (e.which) {
+      switch (e.which) {
         case 37:
-            $(frog).stop().animate({
-                left: '-=15'
+            frog.stop().animate({
+                left: '-=15px'
             }); //left arrow key
             break;
         case 38:
-            $(frog).stop().animate({
-                top: '-=15'
+            frog.stop().animate({
+                top: '-=15px'
             }); //up arrow key
             break;
         case 39:
-            $(frog).stop().animate({
-                left: '+=15'
+            frog.stop().animate({
+                left: '+=15px'
             }); //right arrow key
+           
             break;
         case 40:
-            $(frog).stop().animate({
-                top: '+=15'
+            frog.stop().animate({
+                top: '+=15px'
             }); //bottom arrow key
             break;
         }
     });
 
   }
-
-  moveFrog();
-
   // look for collision
 
-  // function collision(car, frog) {
+  function collision(car, frog) {
 
-  //     var carLeft = car.position().left;
-  //     console.log(carLeft);
-  //     var carTop = car.position().top;
-  //     console.log(carTop);
-  //     var carHeight = car.outerHeight();
-  //     console.log(carHeight);
-  //     var carWidth = car.outerWidth();
-  //     console.log(carWidth);
-  //     var carBottom = carTop + carWidth;
-  //     console.log(carBottom);
-  //     var carRight = carLeft + carWidth;
-  //     console.log(carRight);
-  //     var frogLeft = frog.position().left;
-  //     console.log(frogLeft);
-  //     var frogTop = frog.position().top;
-  //     console.log(frogTop);
-  //     var frogHeight = frog.outerHeight();
-  //     console.log(frogHeight);
-  //     var frogWidth = frog.outerWidth();
-  //     console.log(frogWidth);
-  //     var frogBottom = frogTop + frogHeight;
-  //     console.log(frogBottom);
-  //     var frogRight =  frogLeft+ frogWidth;
-  //     console.log(frogRight);
+    var carLeft = car.offset().left;
+    var carTop = car.offset().top;
+    var carHeight = car.outerHeight(true);
+    var carWidth = car.outerWidth(true);
+    var carBottom = carTop + carHeight;
+    var carRight = carLeft + carWidth;
+    var frogLeft = frog.offset().left;
+    var frogTop = frog.offset().top;
+    var frogHeight = frog.outerHeight(true);
+    var frogWidth = frog.outerWidth(true);
+    var frogBottom = frogTop + frogHeight;
+    var frogRight = frogLeft + frogWidth; 
 
-  //     // if (x1 < y2 || y1 > z2 || r1 < x2 || x1 > r2){ 
-  //     //   console.log(false);
-  //     //   return false;
-  //     // }else{
-  //     //       console.log(true);
-  //     //       return true;
-  //     //     }
+    if (carBottom < frogTop || carTop > frogBottom || carRight < frogLeft || carLeft > frogRight) {
+    }else {
+      alert("game over!");
+      // reset pieces
 
-  //       if (((frogRight > carLeft) && (frogBottom < carTop)) ||
-  //          ((frogBottom > carTop) && ( frogLeft < carRight)) || 
-  //          ((carRight > x1) && (y2 < y1)) || 
-  //          ((x2<r1) && (y2 < z1)) )
-  //         {
-
-        //   console.log(true);
-        // } else {
-        //   console.log(false);
-        // }
-      // if ((x2 < r1 || r2 < x1) && (z2 === z1)) { 
-      //   console.log(true);
-      // } else {
-      // console.log(false);
-      // }
     }
+  }
 
-  collision(car, frog);
-
-  // setInterval(function() {collision($("#target"), $("#frog"))}, 300);
-
-    
-
-
-
-
-
-
+  function collisionCheck(){
+    car.each(function(){
+      collision($(this), frog);
+    });
+  }
 
 
 
