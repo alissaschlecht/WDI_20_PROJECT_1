@@ -12,18 +12,14 @@ $(function(){
   var scoreTwo = $('#score2');
   var showTurn = $("h2");
   // var gameArea = $('#wrapper');
-  var road = $('#road');
-  var carInterval;
-  var collisionInterval;
+  var roads = $('.road');
 
   play();
 
   function play(){
 
-    clearInterval(carInterval);
-    clearInterval(collisionInterval);
-    carInterval = setInterval(carLoop, 2500);
-    collisionInterval = setInterval(collisionCheck, 30);
+
+    setInterval(collisionCheck, 30);
     moveFrog();
     recordPlayerChange();
   }
@@ -40,20 +36,7 @@ $(function(){
   }
 
 
-  function carLoop() {
-        collisionCheck();
-        carLTR.animate({left: "+=580px"}, 2000, function() {  
-          $(this).remove();
-          $('.road').append('<div class="carMoveRight allCars"></div>').animate({left: "+=580px"}, 2000, function() {
-              $(this).remove();
-            });
-        });
 
-                             
-        carRTL.animate({right: "+=580px"}, 2000, function() {
-          carRTL.removeAttr('style'); 
-        });
-  }
 
 
   function moveFrog () {
@@ -161,17 +144,42 @@ $(function(){
       }
     } 
   
-  function createCar() {
 
+
+  $("h1").click(function(){
       $(".road ul").each(function(){
           console.log("appended");
           $(this).append('<div class="carMoveRight allCars"></div>' +
                          '<div class="carMoveLeft allCars"></div>' +
                          '<div class="sidewalk"></div>');
           });
-  }
 
-  createCar();
+      function carLoop() {
+        $(document).keyup(function(e) {
+          if (e.keyCode == 32) {
+            collisionCheck();
+            carLTR.animate({left: "+=580px"}, 2000, function() {
+              carLTR.removeAttr('style'); 
+            });
+
+            carRTL.animate({right: "+=580px"}, 2000, function() {
+            carRTL.removeAttr('style'); });
+
+          };
+        });
+      }
+
+      setInterval(carLoop, 2500);
+
+  });
+  // function createCar() {
+
+  //   $(".road ul").each(function() {
+  //     $(".road ul").append('<div class="carMoveRight allCars"></div>' +
+  //               '<div class="carMoveLeft allCars" id="test"></div>');
+  // }
+
+  // createCar();
 
 //   gameArea.append(
 
