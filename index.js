@@ -8,36 +8,115 @@ $(function(){
   var scoreOne = $('#score1');
   var scoreTwo = $('#score2');
   var showTurn = $("#turn");
-  var playerLives =  parseInt($("#lives"));
+  var playerLives = parseInt($("#lives"));
+  // var playerLives1 = 3;
+  // var playerLives2 = 3;
+  var Level = $('#level');
   var road = $('#road');
   var roadWidth = $('.road').outerWidth(true);
   var carInterval;
+  var rate = 2000;
+  var speed = 2000;
+
+  $('#easy').click(function(){
+    rate = 2000;
+    speed = 2000;
+  });
+
+  $('#medium').click(function(){
+    rate = 1000;
+    speed = 4000;
+  });
   
+  $('#hard').click(function(){
+    
+    rate = 100;
+
+    var randomNum = Math.random();
+    if (randomNum < .66){
+      speed = 2000;
+    }else{
+      speed = 5000;
+    }
+  });
+
   play();
 
   function play(){
 
     clearInterval(carInterval);
-    
-    carInterval = setInterval(carLoop, 1200);
+    carInterval = setInterval(carLoop, rate);
     moveFrog();
-    recordPlayerChange();
+    playThreeLives();
   }
 
   var player = 1;
   var playerScore = [0,0];
-  function recordPlayerChange(){
-    if (player === 1 && playerLives === 0){
-      frog.css({"left": roadWidth*.45, "top": "40px"});
+
+  function updatePlayerScore() {
+      if (player === 1){
+        playerScore[0]++;
+        alert("Safe frog for player one!");
+        scoreOne.html(playerScore[0]);
+        playThreeLives();
+   
+      }else{
+        playerScore[1]++;
+        alert("Safe frog for player two!");
+        scoreTwo.html(playerScore[1]);
+        playThreeLives();
+      }
+    } 
+
+  function playThreeLives() {
+    if (player ===1 && playerLives1 === 0){
       player = 2;
-      showTurn.html("Player 2: Your Turn!")
-    }
-    else {
-      frog.css({"left": roadWidth*.45, "top": "40px"}); 
+      playerLives.html(3);
+      showTurn.html("Player 2: Your Turn!");
+      frog.stop().css({"left": roadWidth*.45, "top": "40px"});
+      
+    }else if (player === 2 && playerLives2 === 0){
       player = 1;
+      playerLives.html(3);
       showTurn.html("Player 1: Your Turn!")
+      frog.css({"left": roadWidth*.45, "top": "40px"});      
     }
   }
+
+function crushFrog() {
+  var alive = "froggerHealthy.png";
+  var dead = "froggerCrushed.svg";        
+  $this = $("#frog img");            
+
+  $this.animate('src', dead);
+  frog.stop().css({"left": roadWidth*.45, "top": "40px"});     
+  $this.attr('src', alive);
+
+};
+  // function levelUp() {
+
+  //   if (scoreOne === 2){
+  //     level = 2;
+  //   }
+  //   else if (scoreOne === 4){
+  //     level = 3;
+  //   }
+  //   else{
+  //     level = level;
+  //   }
+
+  //   if (scorene === 2){
+  //     level = 2;
+  //   }
+  //   else if (scoreOne === 4){
+  //     level = 3;
+  //   }
+  //   else{
+  //     level = level;
+  //   }
+
+
+  // }
 
 
   function carLoop() {
@@ -47,14 +126,6 @@ $(function(){
       collisionInterval = setInterval(collisionCheck, 30);
       // collisionCheck(car, frog);
 
-      var randomNum = Math.random();
-      var carSpeed2;
-      if (randomNum < .66){
-        carSpeed2 = 2000;
-      }else{
-        carSpeed2 = 5000;
-      }
-
       $('.road').prepend('<div class="carMoveRight allCars"><img src="car2.png"/></div>');
       $('.road').append('<div class="carMoveLeft  allCars"><img src="car1.png"/></div>');
 
@@ -62,13 +133,11 @@ $(function(){
       var leftItems = $('.carMoveRight');
       var rightItems = $('.carMoveLeft');
 
-
       setTimeout(function() {
         $.each(leftItems, function(i, e) {
           $(e).animate({
             left: + roadWidth*.95
-            // - wrapper.length
-          }, 4000, function() {
+          }, speed, function() {
               $(this).remove();
           });
         })
@@ -78,7 +147,7 @@ $(function(){
         $.each(rightItems, function(i, e) {
           $(e).animate({
             right: + roadWidth*.95
-          }, carSpeed2, function() {
+          }, speed, function() {
               $(this).remove();
           });
         })
@@ -102,14 +171,16 @@ $(function(){
         if (carBottom < frogTop || carTop > frogBottom || carRight < frogLeft || carLeft > frogRight) {
         }else {
           if (player === 1){
-            alert("crushed!");
-            playerLives = playerLives - 1;
-            recordPlayerChange();
-            console.log(playerLives);
+            crushFrog();
+            playerLives1 = playerLives1 - 1;
+            playThreeLives();
+            playerLives.html(playerLives1);
+
           }else{
-            alert("game over!");
-            playerLives = playerLives - 1;
-            recordPlayerChange();
+            crushFrog();
+            playerLives2 = playerLives2 - 1;
+            playThreeLives();
+            playerLives.html(playerLives2);
           }
         }
       }
@@ -121,7 +192,6 @@ $(function(){
       }
                    
   }
-
 
   function moveFrog () {
     $(document).keydown(function(e) {
@@ -156,7 +226,7 @@ $(function(){
 
     var winArea = $('#winarea');
     var winTop = winArea.offset().top;
-    var winHeight = winArea.outerHeight(true);
+    var winHeight = winArea.outerHeight(true) + 15;
     var winBottom = winTop + winHeight;
 
 
@@ -166,27 +236,10 @@ $(function(){
 
     if (frogBottom <= winBottom){
       updatePlayerScore();
+      frog.stop().css({"left": roadWidth*.45, "top": "40px"});
     }
 
-    console.log(playerScore);
-
   }
-
-  function updatePlayerScore() {
-      if (player === 1){
-        playerScore[0]++;
-        alert("Safe frog for player one!");
-        scoreOne.html(playerScore[0]);
-        recordPlayerChange();
-        
-      }else{
-        playerScore[1]++;
-        alert("Safe frog for player two!");
-        scoreTwo.html(playerScore[1]);
-        recordPlayerChange();
-    
-      }
-    } 
   
 
   });
