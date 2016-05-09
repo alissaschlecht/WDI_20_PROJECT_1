@@ -11,6 +11,8 @@ $(function(){
   var scoreOne = $('#score1');
   var scoreTwo = $('#score2');
   var showTurn = $("h2");
+  // var gameArea = $('#wrapper');
+  var road = $('#road');
 
   play();
 
@@ -33,14 +35,6 @@ $(function(){
     }
   }
 
-  // function addPlayerPoint() {
-
-  //   if () {
-
-  //   }
-
-  // }
-
 
   function carLoop() {
     $(document).keyup(function(e) {
@@ -54,23 +48,9 @@ $(function(){
         carRTL.removeAttr('style'); });
 
       };
-  });
-}
+    });
+  }
 
-
-  // function carLoop() {
-  //   $("#start").click(function() {
-  //     collisionCheck();
-  //     carLTR.animate({left: "+=580px"}, 2000, function() {
-  //       carLTR.removeAttr('style'); 
-  //     });
-
-  //     carRTL.animate({right: "+=580px"}, 2000, function() {
-  //     carRTL.removeAttr('style'); });
-
-  //   });
-  // }
-// keypress to move frog div
 
   function moveFrog () {
     $(document).keydown(function(e) {
@@ -100,7 +80,6 @@ $(function(){
     });
 
   }
-  // look for collision
 
   function collision(car, frog) {
 
@@ -178,6 +157,24 @@ $(function(){
       }
     } 
   
+  function createCar() {
+
+    road.append('<div class="carMoveRight" id="test"></div>' +
+                '<div class="carMoveLeft" id="test"></div>');
+
   
+  }
+
+  createCar();
+
+//   gameArea.append(
+
+
+
+//     '<div class="carMoveRight allCars"></div>' +
+//     '<div class="carMoveLeft allCars"></div>' +
+//     '<div class="sidewalk"></div>)');
+
+// }
 
   });
