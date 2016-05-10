@@ -8,58 +8,62 @@
 </head>
 <body>
 
+
+<div id="splashscreen"><div id="start"><strong>FROGGER</strong> START</div></div>
 <h1>Frogger</h1>
-<h2>Use the Arrow keys to move.</h2>
-<h3 id="turn">Player 1: Your Turn!</h3>
-<h3 id="lives">3</h3>
 
-<div class="scoreboard">
-  <div class="scorebox" id="player1">Player 1
-    <div id="score1">0</div>
-    <div id="levelLabel=">Level
-      <div id="level1">1</div>
+<div class = "difficulty">Choose Difficulty        
+   <button id="easy">EASY</button>
+   <button id="medium">MEDIUM</button>
+   <button id="hard">HARD</button>
+</div> 
+
+
+<div id="game">
+
+
+  <div class="scoreboard">
+    <h3 id="turn">Player 1: Your Turn!<br>Lives:</h3>
+    <h3 id="lives">3</h3>
+
+    <div class="scorebox" id="player1"><strong>Player 1</strong>
+      <div id="score1">0</div>
     </div>
-  </div>
-  
-  <div class="scorebox" id="player2">Player 2
-      <div id="score2">0</div>
-      <div id="levelLabel=">Level</div>
-        <div id="level1">1</div>
-      </div>
-
-   <div class = "difficulty">Choose Difficulty        
-      <button id="easy">EASY</button>
-      <button id="medium">MEDIUM</button>
-      <button id="hard">HARD</button>
-
-   </div>   
-</div>
-
-<div class="wrapper">
-
-<!-- // roads and sidewalks -->
-  <div id="winarea"></div>
-
-  <div class = "road">
-    <div class="spacingGap"></div>
-  </div>
-  <div class="sidewalk"></div>
-
-  <div class = "road">
-    <div class="spacingGap"></div>
-  </div>
-  <div class="sidewalk"></div>
-
-  <div class = "road">
-    <div class="spacingGap"></div>
-  </div>
-  <div class="sidewalk"></div>
-
-  <div class = "road">
-    <div class="spacingGap"></div>
+    
+    <div class="scorebox" id="player2"><strong>Player 2</strong>
+        <div id="score2">0</div>
+        </div> 
   </div>
 
-  <div id="frog"><img src="froggerHealthy.png"/></div>
+
+
+  <div class="wrapper">
+
+  <!-- // roads and sidewalks -->
+    <div id="winarea"></div>
+
+    <div class = "stream">
+      <div class="streamGap"></div>
+    </div>
+    <div class="sidewalk"></div>
+
+    <div class = "stream">
+      <div class="streamGap"></div>
+    </div>
+    <div class="sidewalk"></div>
+
+    <div class = "road">
+      <div class="spacingGap"></div>
+    </div>
+    <div class="sidewalk"></div>
+
+    <div class = "road">
+      <div class="spacingGap"></div>
+    </div>
+
+    <div id="frog"><img src="froggerHealthy.png"/></div>
+
+  </div>
 
 </div>
 

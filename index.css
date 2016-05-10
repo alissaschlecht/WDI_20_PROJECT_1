@@ -15,39 +15,50 @@
   height: 80px;
   width:100%;
   background-color: grey;
+  background-image: url(roadimage1.jpg);
+
 }
+
 .sidewalk {
 
-  height:30px;
+  height:40px;
   width:100%;
   background-color: white;
 
 }
-.carMoveRight {
+
+
+/* {
+
+    max-width:130%; 
+    max-height:130%;
+    margin:auto;
+    display:block;
+
+}*/
+
+.carMoveLeft img, .carMoveRight img, .logMoveLeft img, .logMoveRight img {
+
+    max-width:130%; 
+    max-height:130%;
+    margin:auto;
+    display:block;
+
+}
+
+
+
+.carMoveRight, .logMoveRight {
 
   height: 15px;
   width: 30px;
   position: absolute;
   left: 0;
-}
 
-.carMoveRight img {
-
-    max-width:130%; 
-    max-height:130%;
-    margin:auto;
-    display:block;
-}
-.carMoveLeft img {
-
-    max-width:130%; 
-    max-height:130%;
-    margin:auto;
-    display:block;
 }
 
 
-.carMoveLeft {
+.carMoveLeft, .logMoveLeft {
 
   height: 15px;
   width: 30px;
@@ -61,15 +72,31 @@
   width: 100%;
   height: 60px;
   background-color: grey;
+  background-image: url(roadimage1.jpg);
+
 }
 
+.streamGap {
+
+  width: 100%;
+  height: 10px;
+  background-color: blue;
+
+}
+
+.stream {
+
+  height: 80px;
+  width:100%;
+  background-color: blue;
+
+}
 
 #frog {
 
   height: 25px;
   width: 25px;
   position: relative;
-  top: 40px;
   left: 280px;
 
 }
@@ -80,11 +107,12 @@
     max-height:130%;
     margin:auto;
     display:block;
+
 }
 
 .scoreboard {
 
-  width:15%;
+  width:20%;
   height: 400px;
   position:relative;
   float: left;
@@ -96,14 +124,12 @@
 
   width: 45%;
   height:100px;
-  background-color: green;
+  background-color: #345d00;
   position: relative;
   float: left;
   text-align: center;
   font-size: 20px;
   color: white;
-  padding-bottom: 20px;
-  padding-top: 10px;
   border: white 3px solid;
 
 }
@@ -111,25 +137,24 @@
 #winarea {
 
   width: 100%;
-  height:50px;
-  background-color: green;
+  height:30px;
+  background-color: #345d00;
 
 }
 
 h1, h2 {
 
   text-align: center;
-  margin-bottom: 30px;
-  color: green;
+  margin-bottom: 10px;
+  color: #345d00;
 
 }
 
  h3 {
 
-  text-align: left;
-  margin-left: 50px;
-  color: green;
-  margin-bottom: 10px;
+  text-align: center;
+  color: #345d00;
+  display: inline-block;
 
 }
 
@@ -139,10 +164,40 @@ h1, h2 {
 
 }
 
+.difficulty {
+
+  margin-top: 20px;
+  text-align: center;
+
+}
+
 button {
   width:80px;
-  display: block;
+  display: inline-block;
   margin:10px;
+}
+
+
+#splashscreen {
+    background-color: #345d00;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+}
+
+#start {
+
+  font-size: 200px;
+  text-align: center;
+  color: #ccffbb;
+
+}
+
+#game {
+
+  width: 100%;
+  height:80%;
 }
 
 
