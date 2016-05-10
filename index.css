@@ -3,181 +3,22 @@
     border: red 1px solid;
 }*/
 
-.wrapper {
-  height: 500px;
-  width:50%;
-  margin: auto;
-  position: relative;
-}
+html {
 
-.road {
-
-  height: 80px;
-  width:100%;
-  background-color: grey;
-  background-image: url(roadimage1.jpg);
-
-}
-
-.sidewalk {
-
-  height:40px;
-  width:100%;
-  background-color: white;
-
-}
-
-
-/* {
-
-    max-width:130%; 
-    max-height:130%;
-    margin:auto;
-    display:block;
-
-}*/
-
-.carMoveLeft img, .carMoveRight img, .logMoveLeft img, .logMoveRight img {
-
-    max-width:130%; 
-    max-height:130%;
-    margin:auto;
-    display:block;
-
-}
-
-
-
-.carMoveRight, .logMoveRight {
-
-  height: 15px;
-  width: 30px;
-  position: absolute;
-  left: 0;
-
-}
-
-
-.carMoveLeft, .logMoveLeft {
-
-  height: 15px;
-  width: 30px;
-  position: absolute;
-  right: 0;
-
-}
-
-.spacingGap {
-
-  width: 100%;
-  height: 60px;
-  background-color: grey;
-  background-image: url(roadimage1.jpg);
-
-}
-
-.streamGap {
-
-  width: 100%;
-  height: 10px;
-  background-color: blue;
-
-}
-
-.stream {
-
-  height: 80px;
-  width:100%;
-  background-color: blue;
-
-}
-
-#frog {
-
-  height: 25px;
-  width: 25px;
-  position: relative;
-  left: 280px;
-
-}
-
-#frog img {
-
-    max-width:130%; 
-    max-height:130%;
-    margin:auto;
-    display:block;
-
-}
-
-.scoreboard {
-
-  width:20%;
-  height: 400px;
-  position:relative;
-  float: left;
-  margin-left: 50px;
-
-}
-
-#player1, #player2{
-
-  width: 45%;
-  height:100px;
-  background-color: #345d00;
-  position: relative;
-  float: left;
-  text-align: center;
-  font-size: 20px;
-  color: white;
-  border: white 3px solid;
-
-}
-
-#winarea {
-
-  width: 100%;
-  height:30px;
-  background-color: #345d00;
-
-}
-
-h1, h2 {
-
-  text-align: center;
-  margin-bottom: 10px;
-  color: #345d00;
-
-}
-
- h3 {
-
+  background-image: url(Grey-Texture.jpg);
+  font-family: 'Gloria Hallelujah', cursive;
   text-align: center;
   color: #345d00;
-  display: inline-block;
-
 }
 
-#score1, #score2 {
+.hide {
 
-  margin-top: 10px;
-
-}
-
-.difficulty {
-
-  margin-top: 20px;
-  text-align: center;
+  width: 300px;
+  height:200px;
+  visibility: hidden; 
+  display:inline;
 
 }
-
-button {
-  width:80px;
-  display: inline-block;
-  margin:10px;
-}
-
-
 #splashscreen {
     background-color: #345d00;
     position: absolute;
@@ -198,7 +39,185 @@ button {
 
   width: 100%;
   height:80%;
+
 }
+
+.wrapper {
+
+  height: 500px;
+  width:30%;
+  margin: auto;
+  position: relative;
+  border-color: red 4px solid;
+  border-radius: 500px;
+
+}
+
+.difficulty {
+
+  margin-top: 20px;
+  text-align: center;
+
+}
+
+button {
+
+  width:80px;
+  display: inline-block;
+  margin-left:10px;
+  color: #ccffbb;
+  background-color: #345d00;
+  border: none;
+  border-radius: 25px;
+
+}
+
+h1 {
+
+  font-size: 50px;
+  margin:0;
+
+}
+
+
+ h3 {
+
+  font-size: 30px;
+  color: #345d00;
+  display: block;
+  margin-left: 10px;
+
+}
+
+.first, .second {
+
+  height: 80px;
+  width:100%;
+  background-color: #c4ca5e;
+
+}
+
+.spacingGap {
+
+  width: 100%;
+  height: 60px;
+  background-color: #ecef8b;
+
+}
+
+.sidewalk {
+
+  height:40px;
+  width:100%;
+  background-color: green;
+
+}
+
+.carMoveLeft img, .carMoveRight img {
+
+  max-width:150%; 
+  max-height:150%;
+  margin:auto;
+  display:block;
+
+}
+
+.carMoveRight {
+
+  height: 12px;
+  width: 30px;
+  position: absolute;
+  left: 0;
+
+}
+
+.carMoveLeft {
+
+  height: 12px;
+  width: 30px;
+  position: absolute;
+  right: 0;
+
+}
+
+#frog {
+
+  height: 25px;
+  width: 25px;
+  position: relative;
+  left: 280px;
+
+}
+
+#frog img {
+
+  max-width:130%; 
+  max-height:130%;
+  margin:auto;
+  display:block;
+
+}
+
+.scoreboard {
+
+  width:20%;
+  height: 400px;
+  position:relative;
+  float: left;
+  margin-left: 8%;
+
+}
+
+.scorebox {
+
+  width: 45%;
+  height:300px;
+  background-color: #345d00;
+  position: relative;
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  border: white 3px solid;
+  border-radius: 25px;
+  padding-top: 20px;
+  margin-left: 5px;
+  margin-top: 20px;
+
+}
+
+.notes {
+
+  float: right;
+  margin-right: 8%;
+}
+
+#scoreFrog {
+
+  width: 30px;
+  height:30px;
+  
+}
+
+#score1, #score2 {
+
+  margin-top: 10px;
+
+}
+
+#winarea {
+
+  width: 100%;
+  height:60px;
+  background-color: #345d00;
+  border-radius: 2px;
+
+}
+
+
+
+
+
 
 
 

@@ -15,9 +15,9 @@ $(function() {
   var road = $('#road');
   var roadWidth = $('.road').outerWidth(true);
   var carInterval;
-  var logInterval;
-  var rate = 0;
-  var speed = 0;
+  // var logInterval;
+  var rate = 0;//1400;
+  var speed = 0;//3000;
 
 
 // =====================  Start Screen ================================ //
@@ -38,9 +38,7 @@ $('#start').click(function() {
 
     clearInterval(carInterval);
     carInterval = setInterval(carLoop, rate);
-
-    // clearInterval(logInterval);
-    // logInterval = setInterval(logLoop, rate);
+    gameOver();
     moveFrog();
     playThreeLives();
   }
@@ -54,13 +52,13 @@ $('#start').click(function() {
   function updatePlayerScore() {
       if (player === 1){
         playerScore[0]++;
-        alert("Safe frog for player one!");
+        $('#player1').append('<img id="scoreFrog" src="froggerHealthy.png"/>');
         scoreOne.html(playerScore[0]);
         playThreeLives();
    
       }else{
         playerScore[1]++;
-        alert("Safe frog for player two!");
+        $('#player2').append('<img id="scoreFrog" src="froggerHealthy.png"/>');
         scoreTwo.html(playerScore[1]);
         playThreeLives();
       }
@@ -70,15 +68,27 @@ $('#start').click(function() {
     if (player ===1 && playerLives1 === 0){
       player = 2;
       playerLives2 = 3;
-      showTurn.html("Player 2: Your Turn!");
+      showTurn.html("Player 2: Your Turn! <br> Lives: </br>");
       frog.stop().css({"left": roadWidth*.45, "top": "40px"});
       
     }else if (player === 2 && playerLives2 === 0){
       player = 1;
       playerLives1 = 3;
-      showTurn.html("Player 1: Your Turn!")
+      showTurn.html("Player 1: Your Turn! <br> Lives: </br>")
       frog.css({"left": roadWidth*.45, "top": "40px"});      
     }
+  }
+
+  function gameOver() {
+
+    if (playerScore[0] === 1){
+      console.log(works);
+      $("#gameover1").fancybox().click();
+    }
+    else if (playerScore[1] === 1){
+      $("#gameover2").fancybox().click();
+    }
+    else{}
   }
 
   //========================== Winner ==============================================//
@@ -102,37 +112,12 @@ $('#start').click(function() {
 
     }
 
-  // function levelUp() {
 
-  //   if (scoreOne === 2){
-  //     level = 2;
-  //   }
-  //   else if (scoreOne === 4){
-  //     level = 3;
-  //   }
-  //   else{
-  //     level = level;
-  //   }
-
-  //   if (scorene === 2){
-  //     level = 2;
-  //   }
-  //   else if (scoreOne === 4){
-  //     level = 3;
-  //   }
-  //   else{
-  //     level = level;
-  //   }
-
-
-  // }
-
-
-  //=================Car movement and collision detection============================//
+  //=============Car movement and collision detection===================//
 
   $('#easy').click(function(){
-    rate = 2000;
-    speed = 2000;
+    rate = 10000;
+    speed = 1000;
   });
 
   $('#medium').click(function(){
@@ -153,46 +138,6 @@ $('#start').click(function() {
   });
 
 
-  // var ObjectSpeed = function() { 
-
-   
-  //   this.easy = $('#easy').click(function(){
-  //     rate = 2000;
-  //     speed = 2000;
-  //   });
-
-  //   this.easy = $('#medium').click(function(){
-  //     rate = 1000;
-  //     speed = 4000;
-  //   });
-    
-  //   this.hard = $('#hard').click(function(){
-      
-  //     rate = 100;
-
-  //     var randomNum = Math.random();
-  //     if (randomNum < .66){
-  //       speed = 900;
-  //     }else{
-  //       speed = 1000;
-  //     }
-  //   });
-
-  // }
-
-  var myObject2 = {
-    name: "Alissa",
-    sayName: function() {
-      console.log(this.name);
-    }
-  }
-
-  var ObjectLoop = {
-
-    collisionInterval:
-    clearInterval(collisionInterval):
-    collisionInterval = setInterval(collisionCheck, 30)
-  }
 
   function carLoop() {
 
@@ -200,8 +145,11 @@ $('#start').click(function() {
       clearInterval(collisionInterval);
       collisionInterval = setInterval(collisionCheck, 30);
 
-      $('.road').prepend('<div class="carMoveRight allCars"><img src="car2.png"/></div>');
-      $('.road').append('<div class="carMoveLeft  allCars"><img src="car1.png"/></div>');
+      $('.first').prepend('<div class="carMoveRight allCars"><img src="unicycle.gif"/></div>');
+      $('.first').append('<div class="carMoveLeft  allCars"><img src="scooter.gif"/></div>');
+
+      $('.second').prepend('<div class="carMoveRight allCars"><img src="cycleOne.gif"/></div>');
+      $('.second').append('<div class="carMoveLeft  allCars"><img src="redcar.png"/></div>');
 
       var car = $('.allCars');
       var leftItems = $('.carMoveRight');
@@ -233,7 +181,7 @@ $('#start').click(function() {
         var carTop = car.offset().top;
         var carHeight = car.outerHeight(true);
         var carWidth = car.outerWidth(true);
-        var carBottom = carTop + carHeight;
+        var carBottom = carTop + carHeight ;
         var carRight = carLeft + carWidth;
         var frogLeft = frog.offset().left;
         var frogTop = frog.offset().top;
@@ -314,7 +262,7 @@ $('#start').click(function() {
 
 
 
-  //============= Logs and stuff ========================= //
+  //============= Logs ========================= //
 
   // function logLoop() {
 
@@ -328,6 +276,7 @@ $('#start').click(function() {
   //     var log = $('.allLogs');
   //     var leftItems = $('.logMoveRight');
   //     var rightItems = $('.logMoveLeft');
+  //     var stream = $('#stream1');
 
   //     setTimeout(function() {
   //       $.each(leftItems, function(i, e) {
@@ -351,8 +300,8 @@ $('#start').click(function() {
 
   //     function collision(log, frog) {
 
-  //       var logLeft = log.offset().left;
-  //       var logTop = log.offset().top;
+  //       var logLeft = log.offset().left + 40;
+  //       var logTop = log.offset().top + 40;
   //       var logHeight = log.outerHeight(true);
   //       var logWidth = log.outerWidth(true);
   //       var logBottom = logTop + logHeight;
@@ -363,21 +312,36 @@ $('#start').click(function() {
   //       var frogWidth = frog.outerWidth(true);
   //       var frogBottom = frogTop + frogHeight;
   //       var frogRight = frogLeft + frogWidth; 
+  //       var streamTop = stream.offset().top;
+  //       var streamHeight = stream.outerHeight(true);
+  //       var streamBottom = streamTop + streamHeight;
 
-  //       if (frogBottom < logBottom) && ((logBottom < frogTop || logTop > frogBottom || logRight < frogLeft || logLeft > frogRight)) {
-  //         if (player === 1){
-  //           crushFrog();
-  //           playerLives1 = parseInt(playerLives1) - 1;
-  //           playThreeLives();
-  //           playerLives.html(playerLives1);
 
-  //         }else{
-  //           crushFrog();
-  //           playerLives2 = playerLives2 - 1;
-  //           playThreeLives();
-  //           playerLives.html(playerLives2);
-  //         }
+  //       if (frogTop < logBottom){
+
+  //         console.log(frogTop);
+  //         frogTop = logTop;
+  //         console.log(frogTop);
   //       }
+
+
+
+
+
+        // if ((frogBottom < streamBottom) && (logBottom < frogTop || logTop > frogBottom || logRight < frogLeft || logLeft > frogRight)) {
+        //   if (player === 1){
+        //     crushFrog();
+        //     playerLives1 = parseInt(playerLives1) - 1;
+        //     playThreeLives();
+        //     playerLives.html(playerLives1);
+
+        //   }else{
+        //     crushFrog();
+        //     playerLives2 = playerLives2 - 1;
+        //     playThreeLives();
+        //     playerLives.html(playerLives2);
+        //   }
+        // }
   //     }
 
   //     function collisionCheck(){
